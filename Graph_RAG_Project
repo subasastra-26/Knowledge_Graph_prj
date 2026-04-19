@@ -1,0 +1,33 @@
+🚀 Employee Growth Tracker – RAG vs Knowledge Graph System
+
+A Comparison between Traditional RAG and a Knowledge Graph-based system for employee development insights.
+
+This  allows users to ask questions about employee growth, skills, and performance using natural language.
+
+Question Like :
+“What skills are required for promotion?”
+“How does employee performance impact career growth?”
+
+🎯 Used 
+🔹 Traditional RAG
+Document chunking
+Embeddings + FAISS
+Retrieval-based answers from employee data
+
+🔹 Knowledge Graph
+Entity extraction (Employees, Skills, Performance, Promotions)
+
+Neo4j relationships
+Contextual reasoning across employee growth factors
+
+📊 Features
+
+RAG vs Knowledge Graph comparison
+Employee relationship visualization
+Performance insights & charts
+
+🧠 Learning
+RAG retrieves information.
+Knowledge Graph connects and understands employee growth.
+
+this project shows how structured knowledge can improve decision-making in employee
