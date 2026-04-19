@@ -1,0 +1,99 @@
+# Employee Growth Tracker API Documentation
+
+## Overview
+Employee Growth Tracker API is a RESTful service for managing employee development operations. The API supports employee management, skill tracking, performance reviews, career growth, and notifications.
+
+## Authentication
+
+### OAuth 2.0 Authentication
+Employee Growth Tracker uses OAuth 2.0 for secure authentication. The authentication system supports multiple grant types including authorization code, client credentials, and refresh tokens.
+
+#### Authentication Endpoints
+- POST /api/v1/auth/token - Obtain access token
+- POST /api/v1/auth/refresh - Refresh expired tokens
+- DELETE /api/v1/auth/revoke - Revoke access tokens
+
+The access tokens expire after 3600 seconds (1 hour). Refresh tokens are valid for 30 days. All authenticated endpoints require the Authorization header with format: "Bearer {access_token}".
+
+---
+
+## Employee Management
+
+### Employee Entity
+The Employee entity represents a registered employee. Each employee has a unique employee_id (UUID format), name, email, role, department, and joining date.
+
+### Employee Endpoints
+- POST /api/v1/employees - Create new employee
+- GET /api/v1/employees/{employee_id} - Retrieve employee profile
+- PUT /api/v1/employees/{employee_id} - Update employee information
+- DELETE /api/v1/employees/{employee_id} - Delete employee
+
+---
+
+## Skill Management
+
+### Skill Entity
+Skills represent employee capabilities including skill_id, skill_name, level, and employee_id.
+
+### Skill Endpoints
+- POST /api/v1/skills - Add skill
+- GET /api/v1/employees/{employee_id}/skills - Get employee skills
+- PUT /api/v1/skills/{skill_id} - Update skill level
+- DELETE /api/v1/skills/{skill_id} - Remove skill
+
+---
+
+## Performance Tracking
+
+### Performance Entity
+Performance records include performance_id, employee_id, rating, review_comments, and review_date.
+
+### Performance Endpoints
+- POST /api/v1/performance - Add performance review
+- GET /api/v1/employees/{employee_id}/performance - Get performance history
+
+---
+
+## Promotion & Career Growth
+
+### Promotion Entity
+Promotion includes promotion_id, employee_id, old_role, new_role, and promotion_date.
+
+### Promotion Endpoints
+- POST /api/v1/promotions - Add promotion
+- GET /api/v1/employees/{employee_id}/promotions - Get promotion history
+
+---
+
+## Learning & Courses
+
+### Course Entity
+Courses track learning progress with course_id, course_name, status, and employee_id.
+
+### Course Endpoints
+- POST /api/v1/courses - Add course
+- GET /api/v1/employees/{employee_id}/courses - Get courses
+
+---
+
+## Notifications
+
+### Notification System
+The NotificationService delivers updates such as promotions, skill updates, and performance reviews.
+
+- GET /api/v1/notifications - List notifications
+- PUT /api/v1/notifications/{notification_id}/read - Mark as read
+- DELETE /api/v1/notifications/{notification_id} - Delete notification
+
+---
+
+## Dependencies and Services
+
+- EmployeeManager depends on AuthenticationService
+- SkillManager depends on EmployeeManager
+- PerformanceService depends on EmployeeManager
+- PromotionService depends on PerformanceService
+- LearningService depends on SkillManager
+- NotificationService depends on all services
+
+All services communicate through the MessageBroker for asynchronous event processing.
